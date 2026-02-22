@@ -7,6 +7,7 @@ extends Node
 
 var game_start_time_seconds : float
 var global_meters_passed : float = 0.0
+var auto_start_next_run := false
 
 
 func start_game():

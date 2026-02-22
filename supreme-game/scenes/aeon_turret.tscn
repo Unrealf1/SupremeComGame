@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ku5dsnargbsj"]
+
+[ext_resource type="Script" uid="uid://5bq2naf1o867" path="res://scripts/AeonTurret.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dr362gfetatfs" path="res://scenes/AeonBullet.tscn" id="2_f7ar3"]
+[ext_resource type="Texture2D" uid="uid://bdj8cdcyjxyxi" path="res://assets/aeon_turet.jpg" id="3_f7ar3"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(1.99, 2.505, 1.99)
+
+[node name="Turret" type="Area3D" unique_id=505160729]
+script = ExtResource("1")
+bullet_scene = ExtResource("2_f7ar3")
+
+[node name="Mesh" type="Sprite3D" parent="." unique_id=1783472913]
+texture = ExtResource("3_f7ar3")
+
+[node name="FireTimer" type="Timer" parent="." unique_id=1170923848]
+wait_time = 1.2
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=713127580]
+shape = SubResource("2")

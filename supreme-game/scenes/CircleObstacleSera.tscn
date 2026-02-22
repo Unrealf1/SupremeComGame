@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cmpy3hm01j1q3"]
+
+[ext_resource type="Script" uid="uid://bwqk1mo32invd" path="res://scripts/Obstacle.gd" id="1_7r0tb"]
+[ext_resource type="Texture2D" uid="uid://b11ckj1aliqv6" path="res://assets/seraphim_copter_circle.png" id="2_7r0tb"]
+
+[sub_resource type="SphereShape3D" id="1"]
+radius = 0.6
+
+[node name="CircleObstacle" type="Area3D" unique_id=577481331]
+script = ExtResource("1_7r0tb")
+speed = 5.0
+damage = 8
+
+[node name="Visual" type="Sprite3D" parent="." unique_id=219594522]
+billboard = 1
+texture = ExtResource("2_7r0tb")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1529605253]
+shape = SubResource("1")

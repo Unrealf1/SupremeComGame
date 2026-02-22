@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://bnt4kdyf5hlwm"]
 
 [ext_resource type="Script" uid="uid://dnaekooe32vf7" path="res://scripts/Player.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/Obstacle.tscn" id="2"]
-[ext_resource type="Texture2D" uid="uid://b87x8ualq6cmg" path="res://assets/background/panorama.jpg" id="2_c01mt"]
+[ext_resource type="Texture2D" uid="uid://dt16ufbritwml" path="res://assets/background/background_v2.png" id="2_nxtc6"]
 [ext_resource type="Script" uid="uid://caufe3ohnspgm" path="res://scripts/Spawner.gd" id="3"]
 [ext_resource type="Script" uid="uid://k4xwh15ia06q" path="res://scripts/HUD.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://codwi2ecqu6x1" path="res://scenes/background/BackgroundScroller.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://scenes/Turret.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://ijp3ly3sbdhu" path="res://scenes/CircleObstacleAEON.tscn" id="5_q8u5g"]
+[ext_resource type="PackedScene" uid="uid://8n6msw25crgy" path="res://scenes/Turret.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cmpy3hm01j1q3" path="res://scenes/CircleObstacleSera.tscn" id="6_wp0k4"]
+[ext_resource type="PackedScene" uid="uid://da87pcy82l1fl" path="res://scenes/CircleObstacleCybran.tscn" id="7_bjd11"]
+[ext_resource type="PackedScene" uid="uid://ku5dsnargbsj" path="res://scenes/aeon_turret.tscn" id="7_jlsqs"]
+[ext_resource type="Script" uid="uid://bv8iabbm3mdhn" path="res://scripts/GameFlow.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://808yq0e0cdm1" path="res://scenes/HealingObstacle.tscn" id="8_bjd11"]
 
 [sub_resource type="CapsuleMesh" id="1"]
 radius = 0.4
@@ -20,7 +25,7 @@ height = 2.4
 
 [node name="BackgroundScroller" parent="." unique_id=544691614 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-texture = ExtResource("2_c01mt")
+texture = ExtResource("2_nxtc6")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1733376891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
@@ -29,7 +34,7 @@ current = true
 size = 10.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1169834510]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 0.7072304, 0.7069832, 0, -0.7069832, 0.7072304, 0, 13.941566, 15.232622)
 
 [node name="Player" type="Node3D" parent="." unique_id=429304300]
 transform = Transform3D(0.37, 0, 0, 0, 0.42, 0, 0, 0, 0.37, 0, 0, 0)
@@ -47,8 +52,12 @@ shape = SubResource("2")
 
 [node name="Spawner" type="Node3D" parent="." unique_id=419638877]
 script = ExtResource("3")
-obstacle_scene = ExtResource("2")
+obstacle_scene = ExtResource("5_q8u5g")
+obstacle_scene2 = ExtResource("6_wp0k4")
+obstacle_scene3 = ExtResource("7_bjd11")
+bonus_scene = ExtResource("8_bjd11")
 turret_scene = ExtResource("6")
+aeon_turret_scene = ExtResource("7_jlsqs")
 
 [node name="Timer" type="Timer" parent="Spawner" unique_id=366563561]
 wait_time = 5.0
@@ -76,3 +85,54 @@ text = "HP: 50"
 [node name="DistanceLabel" type="Label" parent="HUD/UI/VBox" unique_id=592117974]
 layout_mode = 2
 text = "Distance: 0 m"
+
+[node name="GameFlow" type="CanvasLayer" parent="." unique_id=1809365821]
+script = ExtResource("8")
+
+[node name="Overlay" type="Control" parent="GameFlow" unique_id=350828856]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="GameFlow/Overlay" unique_id=204334122]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -90.0
+offset_right = 220.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="GameFlow/Overlay/Panel" unique_id=686134638]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GameFlow/Overlay/Panel/VBox" unique_id=543519219]
+layout_mode = 2
+text = "The Cruise of the Missile"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="GameFlow/Overlay/Panel/VBox" unique_id=856943972]
+layout_mode = 2
+text = "Score: 0 m"
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="GameFlow/Overlay/Panel/VBox" unique_id=166249388]
+layout_mode = 2
+text = "Controls: WASD / Arrow Keys. 
+Pickup mass to heal, everything else will damage you."
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="GameFlow/Overlay/Panel/VBox" unique_id=2090097148]
+layout_mode = 2
+text = "Press Enter To Continue"
+horizontal_alignment = 1

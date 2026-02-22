@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://da87pcy82l1fl"]
+
+[ext_resource type="Script" uid="uid://bwqk1mo32invd" path="res://scripts/Obstacle.gd" id="1_e4esa"]
+[ext_resource type="Texture2D" uid="uid://da7ptwhx6much" path="res://assets/cybran_copter_circle.png" id="2_e4esa"]
+
+[sub_resource type="SphereShape3D" id="1"]
+radius = 0.6
+
+[node name="CircleObstacle" type="Area3D" unique_id=577481331]
+script = ExtResource("1_e4esa")
+
+[node name="Visual" type="Sprite3D" parent="." unique_id=219594522]
+billboard = 1
+texture = ExtResource("2_e4esa")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1529605253]
+shape = SubResource("1")

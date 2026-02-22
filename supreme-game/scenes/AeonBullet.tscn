@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dr362gfetatfs"]
+
+[ext_resource type="Script" uid="uid://dfgqcdb8w4t8q" path="res://scripts/Bullet.gd" id="1"]
+[ext_resource type="Script" uid="uid://c8bh03rvpxbbj" path="res://scripts/attractor.gd" id="2_773jx"]
+
+[sub_resource type="SphereMesh" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r84b5"]
+albedo_color = Color(0.2, 1, 0.10980392, 1)
+
+[sub_resource type="SphereShape3D" id="2"]
+radius = 0.02
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r84b5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_773jx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oultt"]
+transparency = 1
+albedo_color = Color(0.13725491, 0.5058824, 0.14117648, 0.39215687)
+
+[node name="Bullet" type="Area3D" unique_id=2091290039]
+script = ExtResource("1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1136200649]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("StandardMaterial3D_r84b5")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=641792222]
+shape = SubResource("2")
+
+[node name="Attractor" type="Area3D" parent="." unique_id=1861128669]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("2_773jx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attractor" unique_id=408700801]
+shape = SubResource("SphereShape3D_r84b5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attractor" unique_id=503597704]
+mesh = SubResource("SphereMesh_773jx")
+surface_material_override/0 = SubResource("StandardMaterial3D_oultt")

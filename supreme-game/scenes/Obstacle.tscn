@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://dxua21i46ixbt"]
 
 [ext_resource type="Script" uid="uid://bwqk1mo32invd" path="res://scripts/Obstacle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b6k5ciq7obsig" path="res://assets/aeon_copter.jpg" id="2_qf6v3"]
 
 [sub_resource type="SphereMesh" id="1"]
 radius = 0.6
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lf1j4"]
+albedo_texture = ExtResource("2_qf6v3")
 
 [sub_resource type="SphereShape3D" id="2"]
 radius = 0.6
@@ -12,7 +17,10 @@ radius = 0.6
 script = ExtResource("1")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=609241776]
+transform = Transform3D(1.2, 0, 0, 0, -4.371139e-09, -1.2, 0, 0.1, -5.2453668e-08, 0, 0, 0)
 mesh = SubResource("1")
+surface_material_override/0 = SubResource("StandardMaterial3D_lf1j4")
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=904574752]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("2")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://808yq0e0cdm1"]
+
+[ext_resource type="Script" uid="uid://dn84a73jj45b3" path="res://scripts/HealingObstacle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dicvrv5w5nqxk" path="res://assets/mass_supreme.jpg" id="2_llyph"]
+
+[sub_resource type="SphereShape3D" id="3"]
+radius = 0.6
+
+[node name="HealingObstacle" type="Area3D" unique_id=1941619776]
+script = ExtResource("1")
+speed = 3.0
+
+[node name="Mesh" type="Sprite3D" parent="." unique_id=1952739899]
+texture = ExtResource("2_llyph")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=746147723]
+shape = SubResource("3")

@@ -1,9 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://8n6msw25crgy"]
+[gd_scene format=3 uid="uid://8n6msw25crgy"]
 
 [ext_resource type="Script" uid="uid://b0gqtf3h8nkn2" path="res://scripts/Turret.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://l8lv6m6bt716" path="res://scenes/Bullet.tscn" id="2"]
-
-[sub_resource type="BoxMesh" id="1"]
+[ext_resource type="Texture2D" uid="uid://i2balhaejuf" path="res://assets/uef_turet.jpg" id="3_4sggw"]
 
 [sub_resource type="BoxShape3D" id="2"]
 size = Vector3(1.99, 2.505, 1.99)
@@ -12,9 +11,8 @@ size = Vector3(1.99, 2.505, 1.99)
 script = ExtResource("1")
 bullet_scene = ExtResource("2")
 
-[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1783472913]
-transform = Transform3D(1.99, 0, 0, 0, 2.505, 0, 0, 0, 1.99, 0, 0, 0)
-mesh = SubResource("1")
+[node name="Mesh" type="Sprite3D" parent="." unique_id=1783472913]
+texture = ExtResource("3_4sggw")
 
 [node name="FireTimer" type="Timer" parent="." unique_id=1170923848]
 wait_time = 1.2
