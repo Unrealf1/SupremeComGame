@@ -1,9 +1,10 @@
-extends Node3D
+extends Area3D
 
 @export var bullet_scene: PackedScene
 @export var fire_interval := 1.0
 @export var bullet_speed := 18.0
 @export var bullet_damage := 5
+@export var collision_damage := 10
 @export var screen_half_extents := Vector2(16.0, 9.0)
 @export var despawn_margin := 3.0
 @export var muzzle_side_offset := 0.7
@@ -12,6 +13,7 @@ extends Node3D
 @onready var timer: Timer = $FireTimer
 
 func _ready() -> void:
+  area_entered.connect(_on_area_entered)
   timer.wait_time = fire_interval
   timer.timeout.connect(_fire)
   timer.start()
@@ -61,3 +63,9 @@ func _spawn_bullet_from_offset(local_offset: Vector3, player: Node3D) -> void:
   bullet.speed = bullet_speed
   bullet.damage = bullet_damage
   bullet.screen_half_extents = screen_half_extents
+
+func _on_area_entered(area: Area3D) -> void:
+  var other_owner := area.get_parent()
+  if other_owner and other_owner.has_method("apply_damage"):
+    other_owner.apply_damage(collision_damage)
+    queue_free()
