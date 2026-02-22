@@ -1,7 +1,7 @@
 extends Node
 
 @export var scroll_speed := 6.0
-@export var min_scroll_speed = 6.0
+@export var min_scroll_speed = 4.0
 @export var max_scroll_speed := 12.0
 @export var seconds_to_reach_max_speed := 600.0
 

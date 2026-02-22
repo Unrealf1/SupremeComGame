@@ -21,4 +21,4 @@ func _on_area_entered(area: Area3D) -> void:
   var otherOwner := area.get_parent()
   if otherOwner and otherOwner.has_method("apply_damage"):
     otherOwner.apply_damage(damage)
-  queue_free()
+    queue_free()

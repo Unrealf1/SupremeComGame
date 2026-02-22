@@ -4,6 +4,7 @@ extends Node3D
 @export var parallax_factor := 0.25
 @export var z_depth := -10.0
 @export var fit_texture_height_to_screen := true
+@export var tint: Color = Color(0.8, 0.85, 0.9, 1.0)
 
 @onready var tile_a: MeshInstance3D = $TileA
 @onready var tile_b: MeshInstance3D = $TileB
@@ -25,7 +26,7 @@ func _setup_material() -> void:
   _material = StandardMaterial3D.new()
   _material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
   _material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
-  _material.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
+  _material.albedo_color = Color(tint.r, tint.g, tint.b, 1.0)
   _material.cull_mode = BaseMaterial3D.CULL_DISABLED
   if texture != null:
     _material.albedo_texture = texture
@@ -59,7 +60,7 @@ func _update_layout() -> void:
   _apply_tile_positions()
 
 func _scroll_tiles(delta: float) -> void:
-  var offset := GameState.scroll_speed * parallax_factor * delta * 3.0
+  var offset := GameState.scroll_speed * parallax_factor * delta * 1.0
   _scroll_x = fposmod(_scroll_x + offset, _tile_size.x)
   _apply_tile_positions()
 
